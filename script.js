@@ -1,45 +1,44 @@
-// Mensagem de boas-vindas ao carregar a página
+// Exibir mensagem de boas-vindas de forma menos intrusiva
 window.addEventListener('load', function() {
-    alert('Bem-vindo ao JhonArt, aproveite sua visita!');
+    const welcomeMessage = document.createElement('div');
+    welcomeMessage.classList.add('welcome-message');
+    welcomeMessage.textContent = 'Bem-vindo ao JhonArt, aproveite sua visita!';
+    document.body.appendChild(welcomeMessage);
+
+    setTimeout(() => {
+        welcomeMessage.classList.add('hide');
+    }, 5000); // A mensagem desaparece após 5 segundos
 });
 
-// Função para abrir e fechar o menu de navegação (caso seja necessário)
-function toggleMenu() {
-    const navMenu = document.querySelector('nav ul');
-    if (navMenu) {
-        navMenu.classList.toggle('active');
-    }
+// Função de menu responsivo
+const menuButton = document.querySelector('.menu-button'); // Assumindo que há um ícone de hambúrguer
+if (menuButton) {
+    menuButton.addEventListener('click', toggleMenu);
 }
 
-// Função para capturar o evento de envio do formulário de newsletter
+// Validação de email no formulário da newsletter
 document.getElementById('newsletter').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita que a página recarregue ao enviar
     const emailInput = document.querySelector('#newsletter input');
-    if (emailInput) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailInput && emailPattern.test(emailInput.value)) {
         alert(`Obrigado por se inscrever, ${emailInput.value}!`);
+    } else {
+        alert('Por favor, insira um e-mail válido.');
     }
 });
 
-// Função para rolar suavemente até a seção clicada
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetElement = document.querySelector(this.getAttribute('href'));
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Função para adicionar a classe 'show' quando o elemento aparecer na tela usando IntersectionObserver
+// Animação personalizada para fade-in
 function fadeInOnScroll() {
     const fadeInElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
+                if (entry.target.classList.contains('slide-right')) {
+                    entry.target.classList.add('slide-right-show');
+                }
             }
         });
     }, { threshold: 0.1 });
@@ -49,5 +48,4 @@ function fadeInOnScroll() {
     });
 }
 
-// Chama quando a página carrega
 window.addEventListener('load', fadeInOnScroll);
