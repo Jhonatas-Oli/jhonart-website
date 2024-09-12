@@ -2,6 +2,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="JhonArt - Arte, Cultura Negra e Produtos Exclusivos">
+    <meta name="keywords" content="Arte, Cultura Negra, Produtos, Blog, Pop Culture">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JhonArt - Shopping Online</title>
     <link rel="stylesheet" href="styles.css">
@@ -25,10 +27,10 @@
             <h2>Blog Pessoal</h2>
             <div class="gallery">
                 <article class="gallery-item">
-                    <img src="img/blog_arte1.jpg" alt="Arte representando a cultura POP negra 1">
+                    <img src="img/blog_arte1.jpg" alt="Arte representando a cultura POP negra 1" loading="lazy">
                 </article>
                 <article class="gallery-item">
-                    <img src="img/blog_arte2.jpg" alt="Arte representando a cultura POP negra 2">
+                    <img src="img/blog_arte2.jpg" alt="Arte representando a cultura POP negra 2" loading="lazy">
                 </article>
                 <!-- Mais imagens aqui -->
             </div>
@@ -42,7 +44,7 @@
             <h2>Produtos em Destaque</h2>
             <div class="produtos-container">
                 <div class="produto">
-                    <img src="img/produto1.jpg" alt="Arte: Cultura Negra">
+                    <img src="img/produto1.jpg" alt="Produto: Arte Cultura Negra" loading="lazy">
                     <h3>Arte: Cultura Negra</h3>
                     <p>A imagem exalta a potência da mulher negra...</p>
                     <button class="btn">Comprar</button>
@@ -56,11 +58,13 @@
     <footer>
         <form id="newsletter">
             <h3>Inscreva-se para receber novidades</h3>
-            <input type="email" placeholder="Seu e-mail">
+            <input type="email" placeholder="Seu e-mail" aria-label="Insira seu e-mail">
             <button type="submit">Inscrever</button>
         </form>
         <p>© 2024 JhonArt - Todos os direitos reservados</p>
     </footer>
+
+    <button class="menu-button" aria-label="Abrir menu">Menu</button> <!-- Ícone de menu para mobile -->
 
     <script src="script.js"></script>
 </body>

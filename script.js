@@ -11,12 +11,18 @@ window.addEventListener('load', function() {
 });
 
 // Função de menu responsivo
-const menuButton = document.querySelector('.menu-button'); // Assumindo que há um ícone de hambúrguer
+const menuButton = document.querySelector('.menu-button'); // Ícone de hambúrguer
+const navMenu = document.querySelector('nav ul');
+
+function toggleMenu() {
+    navMenu.classList.toggle('active');
+}
+
 if (menuButton) {
     menuButton.addEventListener('click', toggleMenu);
 }
 
-// Validação de email no formulário da newsletter
+// Validação de email no formulário da newsletter com feedback em tempo real
 document.getElementById('newsletter').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita que a página recarregue ao enviar
     const emailInput = document.querySelector('#newsletter input');
@@ -25,7 +31,8 @@ document.getElementById('newsletter').addEventListener('submit', function(event)
     if (emailInput && emailPattern.test(emailInput.value)) {
         alert(`Obrigado por se inscrever, ${emailInput.value}!`);
     } else {
-        alert('Por favor, insira um e-mail válido.');
+        emailInput.setCustomValidity('Por favor, insira um e-mail válido.');
+        emailInput.reportValidity();
     }
 });
 
